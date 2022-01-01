@@ -7,14 +7,12 @@ let sortImage = document.querySelector('.sort');
 // добавление строчки списка с кнопкой удаления, и функционал кнопки удаления
 addButton.addEventListener('click', () => {
        let li = document.createElement('li');
-        li.innerHTML = 
-        `<li> ${input.value} <p><img class='remove' src=./remove_button.png alt="кнопка удаления"></p></li>`;
+        li.innerHTML = `${input.value} <p><img class='remove' src=./remove_button.png alt="кнопка удаления"></p>`;
         li.querySelector('img').addEventListener('click', (event) => {
             event.target.parentElement.parentElement.remove();   
             });
     // добавила тут аттрибут draggable, чтобы можно было потом перемещать
         li.draggable = true;
-
         ul.append(li);
         input.value = '';      
 });
@@ -51,19 +49,28 @@ sortButton.addEventListener('click', () => {
 // 1) работает только пока не нажмешь кнопку сортировки, после нажатия кнопки сортировки уже не работает; 
 // 2) перетаскивет как саму запись списка, так и картинку внутри списка - может перетащить картинку удаления без самого текста
 ul.addEventListener('dragstart', (event) => {
-    event.target.classList.add('selected');
+    
+   if (event.target.tagName === 'LI') {
+        event.target.classList.add('selected');
+    }
+    console.log(event.target, event.target.parentElement)
 })
+
 ul.addEventListener('dragend', (event) => {
     event.target.classList.remove('selected');
+    console.log(event.target, event.target.parentElement)
 });
 
 ul.addEventListener('dragover', (event) => {
     event.preventDefault();
     let activeLi = document.querySelector('.selected');
-    let currentLi = event.target;
-    // if (!activeLi.contains('li')) {
-    //     return;
-    // }
-    ul.insertBefore(activeLi, currentLi.nextElementSibling);
+    if (event.target.tagName === 'LI') {
+        let currentLi = event.target;
+        // if (!activeLi.contains('li')) {
+        //     return;
+        // }
+        ul.insertBefore(activeLi, currentLi.nextElementSibling);
+    }
+    console.log(event.target, event.target.parentElement)
 });
 
