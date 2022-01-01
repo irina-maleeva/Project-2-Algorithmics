@@ -56,11 +56,20 @@ h1 {
     margin-left: auto;
     margin-right: auto;
 }
-.add {
+.add { 
     width: 150px;
     height: 42px;
-    left: 500px;
-    top: 568px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
 
     background: #833AE0;
     border-radius: 71px;
@@ -68,17 +77,47 @@ h1 {
     margin-left: 92px;
     margin-bottom: 19px;
 }
+.add:hover {
+    background: #9953F1;
+}
+.add:hover .round{
+    background: #AA68FE;
+}
+.round {
+    width: 42px;
+    height: 42px;
+    background: #9953F1;
+    border-radius: 71px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+.text{
+    display: flex;
+    margin-left: 10px;  
+}
 .remove {
     width: 20px;
     height: 20px;
     margin-right: 40px;
+    border-radius: 71px;
+}
+.remove:hover{
+    background-color: #833AE0;
 }
 li {
     list-style-type: none;
     justify-content: space-between;
     display: flex;
     margin-top: 10px;
-    padding-bottom: 10px;
+    margin-bottom: 10px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -90,6 +129,10 @@ li {
 .sort{
     width: 25px;
     height: 15px;
+    opacity: 0.2;
+}
+.sort:hover {
+    opacity: 1;
 }
 .sort_div{
     height: 15px;
@@ -98,3 +141,4 @@ li {
     margin-right:30px;
     margin-bottom: 12px;
 }
+
