@@ -56,6 +56,11 @@ h1 {
     margin-left: auto;
     margin-right: auto;
 }
+input{
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 270px;
+}
 .add { 
     width: 150px;
     height: 42px;
@@ -99,7 +104,7 @@ h1 {
     justify-content: center;
     color: #FFFFFF;
 }
-.text{
+.text {
     display: flex;
     margin-left: 10px;  
 }
@@ -109,7 +114,7 @@ h1 {
     margin-right: 40px;
     border-radius: 71px;
 }
-.remove:hover{
+.remove:hover {
     background-color: #833AE0;
 }
 li {
@@ -122,11 +127,11 @@ li {
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    line-height: 16px;
     color: #000000;
     margin-left: 17px;
+    max-width: 270px;
 }
-.sort{
+.sort {
     width: 25px;
     height: 15px;
     opacity: 0.2;
@@ -134,7 +139,7 @@ li {
 .sort:hover {
     opacity: 1;
 }
-.sort_div{
+.sort_div {
     height: 15px;
     display: flex;
     justify-content: flex-end;
