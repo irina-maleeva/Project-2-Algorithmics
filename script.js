@@ -4,13 +4,12 @@ let input = document.querySelector('input');
 let ul = document.querySelector('ul');
 let sortImage = document.querySelector('.sort');
 
-
 // добавление строчки списка и функционал кнопки удаления
 // прописала функцию, которая потом вызывается двумя разными событиями
 function listLineAdding() {
     if (input.value !='') {
         let li = document.createElement('li');
-        li.innerHTML = `${input.value} <p><img class='remove' src=./remove_button.png alt="кнопка удаления"></p>`;
+        li.innerHTML = `${input.value} <p><img class='remove' src=./img/remove_button.png alt="кнопка удаления"></p>`;
         li.querySelector('img').addEventListener('click', (event) => {
             var removeConfirmed = confirm('Вы действительно хотите удалить этот пункт списка?');
             if (removeConfirmed) {
@@ -41,7 +40,6 @@ input.addEventListener('keydown', (event) => {
     }      
 });
 
-
 // сортировка в обе стороны с добавлением переменной оrder, которая меняется
 let order = 1;
 
@@ -57,15 +55,13 @@ sortButton.addEventListener('click', () => {
     order = order*(-1);
     switch(order) {
         case 1:
-        sortImage.src = './sort_down.png';
-        break;
+            sortImage.src = './img/sort_down.png';
+            break;
         case -1:
-        sortImage.src = './sort_up.png';
-        break;
-    }
-    
+            sortImage.src = './img/sort_up.png';
+            break;
+    } 
 });
-
 
 // Добавила возможность drag and drop к элементам списка
 
