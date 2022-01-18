@@ -4,19 +4,41 @@ let input = document.querySelector('input');
 let ul = document.querySelector('ul');
 let sortImage = document.querySelector('.sort');
 
-// добавление строчки списка с кнопкой удаления, и функционал кнопки удаления
-addButton.addEventListener('click', () => {
-       let li = document.createElement('li');
-        li.innerHTML = `${input.value} <p><img class='remove' src=./remove_button.png alt="кнопка удаления"></p>`;
+// добавление строчки списка и функционал кнопки удаления
+// прописала функцию, которая потом вызывается двумя разными событиями
+function listLineAdding() {
+    if (input.value !='') {
+        let li = document.createElement('li');
+        li.innerHTML = `${input.value} <p><img class='remove' src=./img/remove_button.png alt="кнопка удаления"></p>`;
         li.querySelector('img').addEventListener('click', (event) => {
-            event.target.parentElement.parentElement.remove();   
-            });
-    // добавила тут аттрибут draggable, чтобы можно было потом перемещать
+            var removeConfirmed = confirm('Вы действительно хотите удалить этот пункт списка?');
+            if (removeConfirmed) {
+                event.target.parentElement.parentElement.remove();
+            } else {
+                return;
+            }   
+        });
+        // добавила тут аттрибут draggable, чтобы можно было потом перемещать
         li.draggable = true;
         ul.append(li);
+        // здесь стирается написанная ранее строчка
         input.value = '';      
+    } else {
+        alert('Нужно ввести тест в поле ввода и только после этого нажать кнопку "добавить"');
+    }
+}
+
+// вызов функции при нажатии кнопки "Добавить" после ввода текста в поле ввода
+addButton.addEventListener('click', () => {
+    listLineAdding();
 });
 
+// вызов функции при нажатии Enter после ввода текста в поле ввода
+input.addEventListener('keydown', (event) => {
+    if (event.code == 'Enter') {
+        listLineAdding();
+    }      
+});
 
 // сортировка в обе стороны с добавлением переменной оrder, которая меняется
 let order = 1;
@@ -33,32 +55,25 @@ sortButton.addEventListener('click', () => {
     order = order*(-1);
     switch(order) {
         case 1:
-        sortImage.src = './sort_down.png';
-        break;
+            sortImage.src = './img/sort_down.png';
+            break;
         case -1:
-        sortImage.src = './sort_up.png';
-        break;
-    }
-    
+            sortImage.src = './img/sort_up.png';
+            break;
+    } 
 });
 
+// Добавила возможность drag and drop к элементам списка
 
-// Добавляю drag and drop к элементам списка
-// аттрибут draggable добавила выше при создании записи li
-// работает, но c двумя ошибками:  
-// 1) работает только пока не нажмешь кнопку сортировки, после нажатия кнопки сортировки уже не работает; 
-// 2) перетаскивет как саму запись списка, так и картинку внутри списка - может перетащить картинку удаления без самого текста
-ul.addEventListener('dragstart', (event) => {
-    
-   if (event.target.tagName === 'LI') {
+ul.addEventListener('dragstart', (event) => { 
+    // это условие нужно чтобы нельзя было перетащить кнопку удаления отдельно от текста списка   
+    if (event.target.tagName === 'LI') {
         event.target.classList.add('selected');
     }
-    console.log(event.target, event.target.parentElement)
 })
 
 ul.addEventListener('dragend', (event) => {
     event.target.classList.remove('selected');
-    console.log(event.target, event.target.parentElement)
 });
 
 ul.addEventListener('dragover', (event) => {
@@ -66,11 +81,7 @@ ul.addEventListener('dragover', (event) => {
     let activeLi = document.querySelector('.selected');
     if (event.target.tagName === 'LI') {
         let currentLi = event.target;
-        // if (!activeLi.contains('li')) {
-        //     return;
-        // }
-        ul.insertBefore(activeLi, currentLi.nextElementSibling);
+        ul.insertBefore(activeLi, currentLi);
     }
-    console.log(event.target, event.target.parentElement)
 });
 
