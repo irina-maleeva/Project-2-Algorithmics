@@ -4,6 +4,25 @@ let input = document.querySelector('input');
 let ul = document.querySelector('ul');
 let sortImage = document.querySelector('.sort');
 
+// загрузка списка дел из локального хранилища
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('todoList')) {
+        ul.innerHTML = localStorage.getItem('todoList');
+        let listArray = Array.from(document.querySelectorAll('li'));
+        listArray.forEach((li) => {
+            li.querySelector('img').addEventListener('click', (event) => {
+                var removeConfirmed = confirm('Вы действительно хотите удалить этот пункт списка?');
+                if (removeConfirmed) {
+                    event.target.parentElement.parentElement.remove();
+                    localStorage.setItem('todoList', ul.innerHTML);
+                } else {
+                    return;
+                }   
+            });
+        })
+    }
+});
+
 // добавление строчки списка и функционал кнопки удаления
 // прописала функцию, которая потом вызывается двумя разными событиями
 function listLineAdding() {
@@ -14,6 +33,7 @@ function listLineAdding() {
             var removeConfirmed = confirm('Вы действительно хотите удалить этот пункт списка?');
             if (removeConfirmed) {
                 event.target.parentElement.parentElement.remove();
+                localStorage.setItem('todoList', ul.innerHTML);
             } else {
                 return;
             }   
@@ -21,6 +41,8 @@ function listLineAdding() {
         // добавила тут аттрибут draggable, чтобы можно было потом перемещать
         li.draggable = true;
         ul.append(li);
+        // Добавляю ul в localStorage
+        localStorage.setItem('todoList', ul.innerHTML);
         // здесь стирается написанная ранее строчка
         input.value = '';      
     } else {
@@ -51,6 +73,8 @@ sortButton.addEventListener('click', () => {
     ul.innerHTML = null;
     listArray.forEach(element => {
         ul.append(element);
+        // Добавляю ul в localStorage
+        localStorage.setItem('todoList', ul.innerHTML);
     })
     order = order*(-1);
     switch(order) {
@@ -82,6 +106,8 @@ ul.addEventListener('dragover', (event) => {
     if (event.target.tagName === 'LI') {
         let currentLi = event.target;
         ul.insertBefore(activeLi, currentLi);
+        // Добавляю ul в localStorage
+        localStorage.setItem('todoList', ul.innerHTML);
     }
 });
 
