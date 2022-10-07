@@ -1,2 +1,2 @@
-# Project-2-Algorithmics
+# Task treker
 Project 2 of the course in Algorithmics.
