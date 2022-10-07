@@ -1,2 +1,6 @@
-# Task treker
-Project 2 of the course in Algorithmics.
+## Проект "Разработка трекера задач"
+
+Приложение сделано для записи небольших задач в текстовом формате.
+Внешний вид соответствует макету : 
+https://www.figma.com/file/KsxpDgPhRS3zEmuGx8qcKk/PTM2-Todo-list?node-id=0%3A1 
+
