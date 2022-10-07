@@ -17,7 +17,8 @@ https://www.figma.com/file/KsxpDgPhRS3zEmuGx8qcKk/PTM2-Todo-list?node-id=0%3A1
 
 ![activeSortingButton](https://user-images.githubusercontent.com/92203369/194571364-20b3a60b-61a6-4af3-856f-b4de4baece74.png)
 
-Также реализована функция drag&drop - можно перетаскивать вручную задачи внутри списка
+Также реализована функция drag&drop - можно перетаскивать вручную задачи внутри списка.
+
 Список сохраняется в локальном хранилище и загружается из него при перезагрузке.
 
 
